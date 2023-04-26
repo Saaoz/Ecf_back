@@ -7,5 +7,6 @@ const router = express.Router();
 
 module.exports = router;
 
-router.use('/jobs', cardRoute);
+router.use('/api', cardRoute);
+
 
