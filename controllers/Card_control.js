@@ -102,22 +102,22 @@ const deleteCardById = async (req, res) => {
 	}
 };
 
-const seachOffersCard = async (req, res) => {
-	const { position, contract, location, company } = req.query
-  
+const searchOffersCard = async (req, res) => {
+	const { keyword, contract, location, company } = req.query;
+
 	try {
-	  const query = {}
-	  if (company) query.company = company
-	  if (position) query.position = position
-	  if (contract) query.contract = contract
-	  if (location) query.location = location
-  
-	  const jobOffers = await JobOffer.find(query)
-	  res.json(jobOffers)
+		const query = {};
+		if (company) query.company = company;
+		if (keyword) query.position = keyword;
+		if (contract) query.contract = contract === 'full-time' ? true : false;
+		if (location) query.location = location;
+	
+		const jobOffers = await JobOffer.find(query);
+		res.json(jobOffers);
 	} catch (err) {
-	  res.status(500).send(err.message)
+		res.status(500).send(err.message);
 	}
-  }
+}
 
 module.exports = {
 	getAllCards,
@@ -125,6 +125,6 @@ module.exports = {
 	deleteCardById,
 	addCard,
 	updateCard,
-	seachOffersCard,
+	searchOffersCard,
 };
 // quoicoubeh

@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { getAllCards, getCardById, updateCard, deleteCardById, addCard, seachOffersCard } = require('../controllers/Card_control');
+const { getAllCards, getCardById, updateCard, deleteCardById, addCard, searchOffersCard } = require('../controllers/Card_control');
 
-module.exports = router;
 
 router.get('/', getAllCards);
 
@@ -15,4 +14,6 @@ router.put("/:id", updateCard);
 
 router.delete("/:id", deleteCardById)
 
-router.get("/search", seachOffersCard);
+router.get("/search", searchOffersCard);
+
+module.exports = router;
