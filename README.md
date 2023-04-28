@@ -8,7 +8,7 @@ ATTENTION le back ne contient pas le .env voici un exemple de .env:
 
 ### npm start
 
-
+### NE PAS OUBLIER localhost:8000
 
 API pour les offres d'emploi
 Routes disponibles
