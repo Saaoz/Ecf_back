@@ -1,3 +1,15 @@
+Installation 
+
+ATTENTION le back ne contient pas le .env voici un exemple de .env:
+
+" MONGODB_URL=mongodb+srv://<pseudo>:<passe>@board0.9zgjlkq.mongodb.net/?retryWrites=true&w=majority "
+
+npm install 
+
+npm start
+
+
+
 API pour les offres d'emploi
 Routes disponibles
 GET /api/jobs
@@ -31,3 +43,21 @@ Express.js
 MongoDB
 Mongoose
 Moment
+
+
+exemple de données attendu : 
+_id possède un underscore car Mongodb fait un id de lui même (pour plus de sécurité )
+
+"_id": "6446f09d68efb09521e6e731",
+        "company": "OpenAI",
+        "logo": "https://www.example.com/openai-logo.svg",
+        "logoBackground": "#FFFFFF",
+        "position": "Développeur Logiciel",
+        "postedAt": "2023-04-20T00:00:00.000Z",
+        "contract": "Full time",
+        "location": "États-Unis",
+        "website": "https://www.openai.com/",
+        "apply": "https://www.example.com/postuler",
+        "description": "OpenAI cherche un développeur logiciel passionné pour rejoindre notre équipe de recherche en intelligence artificielle. Nous recherchons un candidat possédant une expérience de travail avec des langages de programmation comme Python, C++, et TensorFlow.",
+        "__v": 0
+    }
