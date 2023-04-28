@@ -1,6 +1,9 @@
 const dotenv = require("dotenv");
 dotenv.config();
 
+// Importer les routes pour chaque modèle
+const jobRoutes = require("./routes/Card_route");
+
 const router = require("./routes/Index_route")
 const express = require("express");
 const PORT = 8000;
@@ -31,12 +34,6 @@ mongoose
 app.get("/", (req, res) => {
 	res.send("Welcome to jobboard API");
 });
-
-// Importer les routes pour chaque modèle
-const jobRoutes = require("./routes/Card_route");
-
-// Utiliser les routes pour chaque modèle
-app.use("/jobs", jobRoutes);
 
 
 app.listen(PORT, async () => {

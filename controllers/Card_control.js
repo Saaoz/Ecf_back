@@ -90,7 +90,7 @@ const updateCard = async (req, res) => {
 
 const deleteCardById = async (req, res) => {
 	try {
-		const card = await card.findById(req.params.id);
+		const card = await Card.findById(req.params.id);
 		if (card) {
 			await card.remove();
 			res.json({ message: "card deleted" });
@@ -103,21 +103,21 @@ const deleteCardById = async (req, res) => {
 };
 
 const searchOffersCard = async (req, res) => {
-	const { keyword, contract, location, company } = req.query;
-
+	const { position, contract, location } = req.query;
+	console.log(position, contract, location);
 	try {
 		const query = {};
-		if (company) query.company = company;
-		if (keyword) query.position = keyword;
+		if (position) query.position = { $regex: position, $options: 'i' };
 		if (contract) query.contract = contract === 'full-time' ? true : false;
-		if (location) query.location = location;
-	
-		const jobOffers = await JobOffer.find(query);
+		if (location) query.location = { $regex: location, $options: 'i' };
+		console.log(query);
+		const jobOffers = await Card.find(query);
+		console.log(jobOffers);
 		res.json(jobOffers);
 	} catch (err) {
 		res.status(500).send(err.message);
 	}
-}
+};
 
 module.exports = {
 	getAllCards,
