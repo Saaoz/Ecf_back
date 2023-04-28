@@ -11,7 +11,7 @@ router.get("/:id", getCardById)
 
 
 // Route POST pour ajouter une nouvelle carte
-router.post('/', addCard);
+router.post('/create/', addCard);
 
 router.put("/:id", updateCard);
 

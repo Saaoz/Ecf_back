@@ -1,4 +1,6 @@
 const Card = require('../models/Card_model');
+const moment = require('moment');
+const { ObjectId } = require('mongodb');
 
 const getAllCards = async (req, res) => {
 	try {
@@ -28,9 +30,11 @@ const getCardById = async (req, res) => {
 
 const addCard = async (req, res) => {
 	try {
-		const { company, logo, logoBackground, position, postedAt, contract, location, website, apply, description, requirements, role } = req.body;
+		const { company, position, contract, location, website, apply, description, requirements, role } = req.body;
+		// Récupération de la date et heure actuelles
+		const postedAt = moment().toISOString();
 
-		// Création de la nouvelle carte
+		// Création de la nouvelle carte avec la date de publication actuelle
 		const newCard = new Card({
 			company,
 			position,
@@ -88,15 +92,20 @@ const updateCard = async (req, res) => {
 
 const deleteCardById = async (req, res) => {
 	try {
-		const card = await Card.findById(req.params.id);
-		if (card) {
-			await card.remove();
-			res.json({ message: "card deleted" });
+		const cardId = req.params.id;
+		if (!ObjectId.isValid(cardId)) {
+			return res.status(400).json({ message: "ID de carte invalide" });
+		}
+
+		const result = await Card.deleteOne({ _id: new ObjectId(cardId) });
+
+		if (result.deletedCount === 1) {
+			return res.json({ message: "Carte supprimée" });
 		} else {
-			res.status(404).json({ message: "card not found" });
+			return res.status(404).json({ message: "Carte introuvable" });
 		}
 	} catch (error) {
-		res.status(500).json({ message: error.message });
+		return res.status(500).json({ message: error.message });
 	}
 };
 
