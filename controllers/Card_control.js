@@ -1,5 +1,7 @@
 const Card = require('../models/Card_model');
 
+
+
 const getAllCards = async (req, res) => {
 	try {
 		const card = await Card.find({}).maxTimeMS(10000);
@@ -24,17 +26,16 @@ const getCardById = async (req, res) => {
 	}
 };
 
-
+const uuid = require('uuid');
 
 const addCard = async (req, res) => {
 	try {
-		const { company, logo, logoBackground, position, postedAt, contract, location, website, apply, description, requirements, role } = req.body;
+		const { company, position, postedAt, contract, location, website, apply, description, requirements, role } = req.body;
 
 		// Création de la nouvelle carte
 		const newCard = new Card({
+			_id: uuid.v4(),
 			company,
-			logo,
-			logoBackground,
 			position,
 			postedAt,
 			contract,
@@ -44,48 +45,61 @@ const addCard = async (req, res) => {
 			description,
 			requirements,
 			role,
+			logoBackground: '',
+			logo: ''
 		});
 
 		// Enregistrement de la nouvelle carte dans la base de données
 		await newCard.save();
 
-		res.status(201).json({ success: true, data: newCard });
+		// Renvoi de la nouvelle carte créée en réponse
+		res.status(201).json(newCard);
 	} catch (error) {
-		console.log(error);
-		res.status(500).json({ success: false, error: 'Server Error' });
+		res.status(500).json({ message: error.message });
 	}
 };
 
-const updateCard = async (req, res) => {
-	try {
-		const cardId = req.params.id;
-		const { company, logo, logoBackground, position, postedAt, contract, location, website, apply, description, requirements, role } = req.body;
 
-		const updatedCard = await Card.findByIdAndUpdate(cardId, {
-			company,
-			logo,
-			logoBackground,
-			position,
-			postedAt,
-			contract,
-			location,
-			website,
-			apply,
-			description,
-			requirements,
-			role
-		}, { new: true });
 
-		if (!updatedCard) {
-			return res.status(404).json({ success: false, error: 'Card not found' });
-		}
-
-		res.status(200).json({ success: true, data: updatedCard });
-	} catch (error) {
-		console.log(error);
-		res.status(500).json({ success: false, error: 'Server Error' });
+const updateCard = async () => {
+	const cards = await Card.find();
+	for (const card of cards) {
+	  const newId = uuidv4();
+	  await Card.findByIdAndUpdate(card._id, { id: newId });
 	}
-};
+  }
+
+
+// const updateCard = async (req, res) => {
+// 	try {
+// 		const cardId = req.params.id;
+// 		const { company, logo, logoBackground, position, postedAt, contract, location, website, apply, description, requirements, role } = req.body;
+
+// 		const updatedCard = await Card.findByIdAndUpdate(cardId, {
+// 			company,
+// 			logo,
+// 			logoBackground,
+// 			position,
+// 			postedAt,
+// 			contract,
+// 			location,
+// 			website,
+// 			apply,
+// 			description,
+// 			requirements,
+// 			role
+// 		}, { new: true });
+
+// 		if (!updatedCard) {
+// 			return res.status(404).json({ success: false, error: 'Card not found' });
+// 		}
+
+// 		res.status(200).json({ success: true, data: updatedCard });
+// 	} catch (error) {
+// 		console.log(error);
+// 		res.status(500).json({ success: false, error: 'Server Error' });
+// 	}
+// };
 
 
 const deleteCardById = async (req, res) => {

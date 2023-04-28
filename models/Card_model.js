@@ -1,15 +1,12 @@
 const mongoose = require('mongoose');
+const uuid = require('uuid');
 
 const cardSchema = new mongoose.Schema({
+  _id: {
+    type: String,
+    default: uuid.v4,
+  },
   company: {
-    type: String,
-    required: true,
-  },
-  logo: {
-    type: String,
-    required: true,
-  },
-  logoBackground: {
     type: String,
     required: true,
   },
