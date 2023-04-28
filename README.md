@@ -2,29 +2,29 @@ Installation
 
 ATTENTION le back ne contient pas le .env voici un exemple de .env:
 
-" MONGODB_URL=mongodb+srv://<pseudo>:<passe>@board0.9zgjlkq.mongodb.net/?retryWrites=true&w=majority "
+### " MONGODB_URL=mongodb+srv://<pseudo>:<passe>@board0.9zgjlkq.mongodb.net/?retryWrites=true&w=majority "
 
-npm install 
+### npm install 
 
-npm start
+### npm start
 
 
 
 API pour les offres d'emploi
 Routes disponibles
-GET /api/jobs
+### GET /api/jobs
 Retourne toutes les offres d'emploi présentes dans la base de données.
 
-GET /api/jobs/search
+### GET /api/jobs/search
 Recherche les offres d'emploi selon les paramètres de recherche fournis dans la requête.
 
-GET /api/jobs/:id
+### GET /api/jobs/:id
 Retourne une offre d'emploi par son identifiant unique.
 
-POST /api/jobs/create/
+### POST /api/jobs/create/
 Ajoute une nouvelle offre d'emploi à la base de données.
 
-DELETE /api/jobs/:id
+### DELETE /api/jobs/:id
 Supprime une offre d'emploi existante de la base de données en utilisant l'identifiant unique.
 
 Fonctionnalités disponibles
@@ -37,12 +37,12 @@ Suppression d'une offre d'emploi existante de la base de données en utilisant l
 Utilisation
 Pour utiliser cette API, vous devez d'abord l'installer en utilisant la commande npm install. Ensuite, vous pouvez exécuter l'API en utilisant la commande npm start. Assurez-vous que la base de données est configurée correctement dans le fichier .env avant d'exécuter l'API.
 
-Technologies utilisées
-Node.js
-Express.js
-MongoDB
-Mongoose
-Moment
+###Technologies utilisées
+###Node.js
+###Express.js
+###MongoDB
+###Mongoose
+###Moment
 
 
 exemple de données attendu : 
