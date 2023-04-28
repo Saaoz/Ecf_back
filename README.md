@@ -12,7 +12,7 @@ ATTENTION le back ne contient pas le .env voici un exemple de .env:
 
 API pour les offres d'emploi
 Routes disponibles
-### GET /api/jobs
+### GET /api/jobs/
 Retourne toutes les offres d'emploi présentes dans la base de données.
 
 ### GET /api/jobs/search
