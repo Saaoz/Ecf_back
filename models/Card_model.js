@@ -5,14 +5,6 @@ const cardSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  logo: {
-    type: String,
-    required: true,
-  },
-  logoBackground: {
-    type: String,
-    required: true,
-  },
   position: {
     type: String,
     required: true,

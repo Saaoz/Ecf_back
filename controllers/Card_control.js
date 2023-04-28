@@ -33,8 +33,6 @@ const addCard = async (req, res) => {
 		// Création de la nouvelle carte
 		const newCard = new Card({
 			company,
-			logo,
-			logoBackground,
 			position,
 			postedAt,
 			contract,
