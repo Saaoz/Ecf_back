@@ -127,4 +127,3 @@ module.exports = {
 	updateCard,
 	searchOffersCard,
 };
-// quoicoubeh
